@@ -1,0 +1,37 @@
+class DefectTracker:
+    def __init__(self):
+        self.defects = {}  # Dictionary to store defect data
+
+    def add_defect(self, defect_id, description, status="Open", priority="Medium"):
+        """Adds a new defect to the tracking system."""
+        self.defects[defect_id] = {
+            "description": description,
+            "status": status,
+            "priority": priority
+        }
+        print(f"Defect {defect_id} added successfully.")
+
+    def update_defect_status(self, defect_id, new_status):
+        """Updates the status of an existing defect."""
+        if defect_id in self.defects:
+            self.defects[defect_id]["status"] = new_status
+            print(f"Defect {defect_id} status updated to {new_status}.")
+        else:
+            print(f"Defect {defect_id} not found.")
+
+    def generate_report(self):
+        """Generates a summary report of all defects."""
+        print("\nDefect Report:")
+        print("-" * 40)
+        for defect_id, details in self.defects.items():
+            print(f"ID: {defect_id}, Description: {details['description']}, "
+                  f"Status: {details['status']}, Priority: {details['priority']}")
+        print("-" * 40)
+
+
+# Example usage
+tracker = DefectTracker()
+tracker.add_defect(101, "UI alignment issue", priority="High")
+tracker.add_defect(102, "Login failure", priority="Critical")
+tracker.update_defect_status(101, "Resolved")
+tracker.generate_report()
