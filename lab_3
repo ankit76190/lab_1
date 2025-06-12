@@ -1,0 +1,27 @@
+import random
+
+def add_numbers(a, b):
+    """Function to add two numbers."""
+    return a + b
+
+def generate_test_cases(num_cases=5):
+    """Generates test cases with expected outputs."""
+    test_cases = []
+    for _ in range(num_cases):
+        a = random.randint(-100, 100)
+        b = random.randint(-100, 100)
+        expected = a + b
+        test_cases.append((a, b, expected))
+    return test_cases
+
+def run_tests():
+    """Runs automated tests on add_numbers function."""
+    test_cases = generate_test_cases()
+    print("Running Automated Tests...\n")
+    
+    for i, (a, b, expected) in enumerate(test_cases, 1):
+        actual = add_numbers(a, b)
+        result = "PASS" if actual == expected else "FAIL"
+        print(f"Test {i}: add_numbers({a}, {b}) -> Expected: {expected}, Got: {actual} [{result}]")
+
+run_tests()
