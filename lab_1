@@ -1,0 +1,49 @@
+class SoftwareQuality:
+    def __init__(self, reliability, maintainability, usability):
+        self.reliability = reliability
+        self.maintainability = maintainability
+        self.usability = usability
+
+    def evaluate_quality(self):
+        reliability_score = sum(self.reliability) / len(self.reliability)
+        maintainability_score = sum(self.maintainability) / len(self.maintainability)
+        usability_score = sum(self.usability) / len(self.usability)
+
+        overall_quality = (reliability_score + maintainability_score + usability_score) / 3
+
+        return {
+            "Reliability": reliability_score,
+            "Maintainability": maintainability_score,
+            "Usability": usability_score,
+            "Overall Quality Score": overall_quality
+        }
+
+# Taking user input scores for software evaluation
+print("Enter scores (1-10) for the following criteria:")
+
+reliability = [
+    float(input("Correctness: ")),
+    float(input("Consistency: ")),
+    float(input("Error Tolerance: "))
+]
+
+maintainability = [
+    float(input("Modifiability: ")),
+    float(input("Reusability: ")),
+    float(input("Testability: "))
+]
+
+usability = [
+    float(input("Learnability: ")),
+    float(input("User Efficiency: ")),
+    float(input("Operability: "))
+]
+
+# Creating SoftwareQuality instance and evaluating
+software_quality = SoftwareQuality(reliability, maintainability, usability)
+quality_report = software_quality.evaluate_quality()
+
+# Printing the final quality assessment
+print("\nSoftware Quality Evaluation Report:")
+for key, value in quality_report.items():
+    print(f"{key}: {value:.2f}")
